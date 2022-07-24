@@ -322,7 +322,7 @@ local url , res = https.request('https://api.telegram.org/bot'..Token..'/getchat
 local ChannelJoin = JSON.decode(url)
 if ChannelJoin.result.status == "left" then JoinChannel = false end end return JoinChannel end
 function File_Bot_Run(msg,data) local msg_chat_id = msg.chat_id local msg_reply_id = msg.reply_to_message_id local msg_user_send_id = msg.sender_id.user_id local msg_id = msg.id local text = nil
-if msg.sender.luatele == "messageSenderChat" then LuaTele.deleteMessages(msg.chat_id,{[1]= msg.id}) return false end
+if msg.sender_id.user_id == "messageSenderChat" then LuaTele.deleteMessages(msg.chat_id,{[1]= msg.id}) return false end
 if msg.date and msg.date < tonumber(os.time() - 15) then print("->> Old Message End <<-") return false end
 if data.content.text then text = data.content.text.text end
 if tonumber(msg.sender_id.user_id) == tonumber(TheBekma) then print('This is reply for Bot') return false end
